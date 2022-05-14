@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 // use App\Http\Controllers\CartController;
+use App\Http\Controllers\Auth\GoogleLoginController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,3 +26,6 @@ Route::get('/dashboard', function () {
 // Route::get('/carts', [CartController::class, 'store']);
 
 require __DIR__.'/auth.php';
+
+Route::get('/auth/google/redirect', [GoogleLoginController::class, 'getGoogleAuth'])->name('google.redirect');
+Route::get('/login/google/callback', [GoogleLoginController::class, 'authGoogleCallback']);

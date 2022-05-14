@@ -51,6 +51,12 @@
                     {{ __('Log in') }}
                 </x-button>
             </div>
+
+            <div class="flex items-center justify-end mt-4">
+                <x-button class="ml-3">
+                    <a href="{{ route('google.redirect') }}">Googleログイン</a>
+                </x-button>
+            </div>
         </form>
     </x-auth-card>
 </x-guest-layout>

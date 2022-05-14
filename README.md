@@ -27,6 +27,9 @@ sail artisan make:model --controller --migration  Cart
 sail composer require laravel-lang/lang
 cp ./vendor/laravel-lang/lang/locales/ja/ja.json ./lang/
 cp -r ./vendor/laravel-lang/lang/locales/ja ./lang/
+
+sail composer require laravel/socialite 
+sail artisan make:controller Auth/GoogleLoginController
 -->
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
