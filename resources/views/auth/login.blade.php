@@ -53,10 +53,13 @@
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                <x-button class="ml-3">
-                    <a href="{{ route('google.redirect') }}">Googleログイン</a>
-                </x-button>
+                <button form="google_login" type='submit' class='inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150'>
+                    Googleログイン
+                </button>
             </div>
+        </form>
+        <form id="google_login" method="post" action="{{ route('google.redirect') }}">
+            @csrf
         </form>
     </x-auth-card>
 </x-guest-layout>

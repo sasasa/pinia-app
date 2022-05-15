@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Auth\Events\Registered;
 
 class GoogleLoginController extends Controller
 {
@@ -24,11 +25,13 @@ class GoogleLoginController extends Controller
         $user = User::firstOrCreate([
             'email' => $googleUser->email
         ], [
-            'email_verified_at' => now(),
             'name' => $googleUser->name,
             'google_id' => $googleUser->getId(),
             'password' => Hash::make(uniqid()),
         ]);
+        if ($user->wasRecentlyCreated) {
+            event(new Registered($user));
+        }
         Auth::guard('web')->login($user, true);
         return redirect()->intended(RouteServiceProvider::HOME);
     }

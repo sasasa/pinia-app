@@ -20,12 +20,12 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
 // Route::get('/carts', [CartController::class, 'index'])->middleware(['auth']);
 // Route::get('/carts', [CartController::class, 'store']);
 
 require __DIR__.'/auth.php';
 
-Route::get('/auth/google/redirect', [GoogleLoginController::class, 'getGoogleAuth'])->name('google.redirect');
+Route::post('/auth/google/redirect', [GoogleLoginController::class, 'getGoogleAuth'])->name('google.redirect');
 Route::get('/login/google/callback', [GoogleLoginController::class, 'authGoogleCallback']);
